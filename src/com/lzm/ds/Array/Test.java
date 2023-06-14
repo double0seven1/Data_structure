@@ -41,7 +41,10 @@ public class Test {
         conLinkedList.addNode(new Node(2,2));
         conLinkedList.addNode(new Node(3,3));
         conLinkedList.addNode(new Node(1,3));
-        // conLinkedList.delNode(2);
+        conLinkedList.addNode(new Node(5,3));
+        conLinkedList.addNode(new Node(64,3));
+        conLinkedList.addNode(new Node(3,3));
+        conLinkedList.delNode(2);
         conLinkedList.showNodes();
     }
 }

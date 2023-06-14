@@ -16,7 +16,8 @@ public class ConLinked_list {
         if (sum == 0) {
             this.head = new_node;
             this.rear = new_node;
-            sum++; return;
+            sum++;
+            return;
         }
 
         // 要是序号直接比头节点小-->与头节点交换
@@ -35,7 +36,7 @@ public class ConLinked_list {
         for(int i = 0; i < sum - 1; i++) {
             if (new_node.compareTo(cur) < 0) {
                 old.next = new_node;
-                new_node.next = cur.next;
+                new_node.next = cur;
                 sum++;
                 return;
             }
@@ -45,6 +46,7 @@ public class ConLinked_list {
 
         // 到了这里，必定只能是在最后面添加元素
         rear.next = new_node;
+        rear = new_node;
         sum++;
 
     }
