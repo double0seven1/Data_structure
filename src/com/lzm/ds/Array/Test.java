@@ -1,5 +1,8 @@
 package com.lzm.ds.Array;
 
+import java.util.Collection;
+import java.util.Stack;
+
 public class Test {
     public static void main(String[] args) {
         // Queue queue = new Queue();
@@ -37,14 +40,24 @@ public class Test {
         // circleQueue.show();
 
         ConLinked_list conLinkedList = new ConLinked_list();
-        conLinkedList.addNode(new Node(4,1));
-        conLinkedList.addNode(new Node(2,2));
-        conLinkedList.addNode(new Node(3,3));
-        conLinkedList.addNode(new Node(1,3));
-        conLinkedList.addNode(new Node(5,3));
+        conLinkedList.addNode(new Node(1,1));
+        conLinkedList.addNode(new Node(6,2));
+        conLinkedList.addNode(new Node(9,3));
+        conLinkedList.addNode(new Node(24,3));
         conLinkedList.addNode(new Node(64,3));
-        conLinkedList.addNode(new Node(3,3));
-        conLinkedList.delNode(2);
+        conLinkedList.addNode(new Node(6,3));
+        conLinkedList.addNode(new Node(2,3));
+        conLinkedList.addNode(new Node(100,3));
+        conLinkedList.addNode(new Node(4,4));
+        conLinkedList.addNode(new Node(6,6));
+        conLinkedList.addNode(new Node(7,7));
         conLinkedList.showNodes();
+        System.out.println("---------------------------------");
+        conLinkedList.recurList(conLinkedList.head);
+        // conLinkedList.reverseLinkedList();
+        // conLinkedList.showNodes();
+
+        Stack<String> stack = new Stack<>();
+
     }
 }

@@ -22,16 +22,15 @@ public class ConLinked_list {
 
         // 要是序号直接比头节点小-->与头节点交换
         if (new_node.compareTo(head) < 0) {
-            // 保存旧的头指针
-            Node old = head;
 
+            new_node.next = head;
             head = new_node;
-            new_node.next = old;
+
             sum++; return;
         }
 
         // 循环遍历，直到compareTo的方法返回值是负数
-        Node old = head; // 这里的小细节
+        Node old = head;
         Node cur = head.next;
         for(int i = 0; i < sum - 1; i++) {
             if (new_node.compareTo(cur) < 0) {
@@ -105,6 +104,70 @@ public class ConLinked_list {
             curNode = curNode.next;
         }
     }
+
+    // 查找倒数第n个结点的数值->来两个辅助指针搞定（快慢指针）
+    public Node ReciprocalNode(int i) { // reciprocal:相反的
+        //思路：让快指针先走，等到计数器为2的时候，再启动慢指针
+        Node quick = head;
+        Node slow = head;
+
+        int count = 0;
+        while (quick.next != null) {
+            if(count >= 2) {
+                slow = slow.next;
+            }
+            quick = quick.next;
+            count++;
+        }
+        return slow.next;
+    }
+
+
+
+
+    // 普通版反转单链表->头插法（每遍历一个节点，就放在前面）
+    public void reverseLinkedList() {
+        //如果sum = 1或等于0，无需反转
+
+        // 创建一个首首节点来辅助，每遍历一个节点，就放在首首节点的后面
+        Node header = new Node();
+        header.next = head;
+
+        Node curNode = head.next;
+        Node frontNode = head;//惊天大bug，frontNode的位置不会变！
+
+        while(curNode.next != null) {
+            // 把当前节点的next节点存一下
+            Node curNode_next = curNode.next;
+            // 这里解决了一个小bug，要保存curNode的next结点！
+            curNode.next = header.next;
+            header.next = curNode;
+            // 调整
+            frontNode.next = curNode_next;
+            curNode = curNode_next;
+        }
+        // 来到这里是最后的一个节点
+        curNode.next = header.next;
+        header.next = curNode;
+        frontNode.next = null;
+
+        // 把首首节点去掉，把首节点改一下
+        head = header.next;
+    }
+
+
+    /**
+     * 递归搞定腾讯单链表逆序打印题
+     * 什么是递归？
+     * 1.不断的进去，然后从里面出来。（盗梦空间、进入小穴）
+     * 2.必须要有结束的条件 (盗梦一定要出来)
+     */
+    public void recurList(Node node) {
+        if (node.next != null) {
+            recurList(node.next);
+        }
+        System.out.println(node);
+    }
 }
 
 
@@ -115,6 +178,9 @@ class Node implements Comparable<Node>{
     Object value;
     // 指针域
     Node next;
+
+    public Node() {
+    }
 
     public Node(int no, Object value) {
         this.no = no;

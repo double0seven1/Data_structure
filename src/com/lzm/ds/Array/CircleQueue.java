@@ -56,6 +56,7 @@ public class CircleQueue {
     public int sum() {
         return (rear + maxSize - front) % maxSize;
     }
+
 }
 
 
