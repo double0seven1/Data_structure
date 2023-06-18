@@ -1,6 +1,6 @@
-package com.lzm.ds.Array;
+package com.lzm.ds.sparsearr_queue_linkedlist;
 
-public class CircleQueue {
+public class CircularQueue {
     // 环形数组的关键：留一个空间
 
     // 头指针，指向环形队列的第一个元素
@@ -18,7 +18,7 @@ public class CircleQueue {
 
     // 判断是否满了
     public boolean isFull() {
-        // 如果不空出一个空间（rear指向最后一个元素的后一位）
+        // 如果不空出一个空间（rear指向最后一个元素的后一位）,该怎么区分判断是否为空或满？
         return (rear + 1) % maxSize == front;
     }
 

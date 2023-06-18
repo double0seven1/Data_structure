@@ -1,4 +1,4 @@
-package com.lzm.ds.Array;
+package com.lzm.ds.sparsearr_queue_linkedlist;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

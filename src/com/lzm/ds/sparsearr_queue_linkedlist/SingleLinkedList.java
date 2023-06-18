@@ -1,6 +1,6 @@
-package com.lzm.ds.Array;
+package com.lzm.ds.sparsearr_queue_linkedlist;
 
-public class ConLinked_list {
+public class SingleLinkedList {
     // 实现单向链表的 增 删 改 查
 
     // 计数器，链表共有几个节点
@@ -51,7 +51,7 @@ public class ConLinked_list {
     }
 
 
-    // 删除一个节点(注意头节点的处理)
+    /* 删除一个节点(注意头节点的处理) */
     public void delNode(Object value) {
         if (sum == 0) {
             System.out.println("没有元素，不能删除");
@@ -157,7 +157,7 @@ public class ConLinked_list {
 
 
     /**
-     * 递归搞定腾讯单链表逆序打印题
+     * 递归搞定单链表逆序打印题
      * 什么是递归？
      * 1.不断的进去，然后从里面出来。（盗梦空间、进入小穴）
      * 2.必须要有结束的条件 (盗梦一定要出来)
@@ -167,6 +167,22 @@ public class ConLinked_list {
             recurList(node.next);
         }
         System.out.println(node);
+    }
+
+    /**
+     * 合并两个有序的链表，合并之后的链表依然有序
+     * 思路：先对一个链表进行排序，然后将另外一个链表的节点一个一个地去对比
+     */
+    public void insertLinkedList(SingleLinkedList singleLinkedList) {
+        Node insertCurNode = singleLinkedList.head;
+        Node insertedCurNode = this.head;
+        while(insertCurNode.next != null) {
+            while (insertedCurNode.next != null) {
+              if (insertCurNode.compareTo(insertedCurNode) < 0) {
+
+              }
+            }
+        }
     }
 }
 

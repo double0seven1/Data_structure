@@ -1,4 +1,4 @@
-package com.lzm.ds.Array;
+package com.lzm.ds.sparsearr_queue_linkedlist;
 
 public class Queue {
     /*用数组来模拟队列*/
