@@ -40,10 +40,12 @@ public class SparseArray {
                 }
             }
         }
-        // 稀疏数组第一行的数据
-        int sparseArray[][] = new int[sum + 1][3];
+        int[][] sparseArray = new int[sum + 1][3];
+        // 原始数组总共有几列
         sparseArray[0][0] = arr.length;
+        // 原始数组总共有几行
         sparseArray[0][1] = arr[0].length;
+        // 原始数组总共有几个元素
         sparseArray[0][2] = sum;
 
         // 其它行的数据
@@ -60,7 +62,7 @@ public class SparseArray {
         }
 
         // 增强for循环遍历数组
-        for (int sparseArr[]:sparseArray) {
+        for (int[] sparseArr :sparseArray) {
             for (int data:sparseArr) {
                 System.out.printf("%d\t",data);
             }
@@ -68,17 +70,16 @@ public class SparseArray {
         }
 
         // 把这个数组转去磁盘中
-        // 遍历数组，取出每一个元素，转成String类型，然后调用String类中的getBytes方法变成Byte数组，恰巧write方法就是Byte数组作为参数
+        // 遍历数组，取出每一个元素，转成String类型，然后调用String类中的getBytes方法变成Byte数组，恰巧write方法就是以Byte数组作为参数
         try(FileOutputStream fos = new FileOutputStream("out/production/Data_structure/SparseArray")) {
-            for (int Sparsearr[]:sparseArray) {
+            for (int[] Sparsearr :sparseArray) {
                 for (int data:Sparsearr) {
                     fos.write(String.valueOf(data).getBytes());
+                    // 取回来的时候打标计
                     fos.write("\t".getBytes());
                 }
                 fos.write("\n".getBytes());
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -88,7 +89,7 @@ public class SparseArray {
 
     public static void SparseArrChangeToArr() {
         // 先通过文件把稀疏数组给还原回来
-        // 1.先把文件中数组的内容先放到StringBulider中
+        // 1.先把文件中数组的内容先放到StringBuilder中
         // 2.通过"\n"获得共有几行
         // 3.再通过"\t"获得共有几列
         try(FileInputStream fis = new FileInputStream("out/production/Data_structure/SparseArray")) {
@@ -99,19 +100,19 @@ public class SparseArray {
                 sb.append((char)count);
             }
 
-            String Lines[] = sb.toString().split("\n");
+            String[] Lines = sb.toString().split("\n");
             // ros:行数
             int rows = Lines.length;
 
-            int restoredArr[][] = new int[rows][];
+            int[][] restoredArr = new int[rows][];
 
             // 解析每行的元素
             for (int i = 0; i < rows; i++) {
                 // element：每一行的元素
-                String elements[] = Lines[i].split("\t");
+                String[] elements = Lines[i].split("\t");
                 // cols：列数
                 int cols = elements.length;
-                int rowArray[] = new int[cols];
+                int[] rowArray = new int[cols];
                 for (int j = 0; j < cols; j++) {
                     rowArray[j] = Integer.parseInt(elements[j]);
                 }
@@ -119,23 +120,23 @@ public class SparseArray {
                 restoredArr[i] = rowArray;
             }
             // 通过稀疏数组变回普通二维数组
-            int arr[][] = new int[restoredArr[0][0]][restoredArr[0][1]];
+            int[][] arr = new int[restoredArr[0][0]][restoredArr[0][1]];
 
+            // 给有效数值赋上值
             for (int i = 1; i < restoredArr.length; i++) {
                 // 行，列，值
                 arr[restoredArr[i][0]][restoredArr[i][1]] = restoredArr[i][2];
             }
-            for (int commomarr[]:arr) {
-                for (int item: commomarr) {
+
+            for (int[] commonarr :arr) {
+                for (int item: commonarr) {
                     System.out.printf("%d\t",item);
                 }
                 System.out.println();
 
             }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        } ;
+        }
     }
 }

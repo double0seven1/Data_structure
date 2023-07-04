@@ -35,7 +35,7 @@ public class CircularQueue {
     // 出列（取元素）
     public int get() {
         if (isEmpty())
-            throw new RuntimeException();
+            throw new RuntimeException("队列为空！");
         int value = arr[front];
         front = (front + 1) % maxSize;
         return value;

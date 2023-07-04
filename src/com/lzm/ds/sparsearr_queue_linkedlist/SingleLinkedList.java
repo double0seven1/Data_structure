@@ -2,7 +2,6 @@ package com.lzm.ds.sparsearr_queue_linkedlist;
 
 public class SingleLinkedList {
     // 实现单向链表的 增 删 改 查
-
     // 计数器，链表共有几个节点
     private int sum;
 
