@@ -2,6 +2,7 @@ package com.lzm.ds.statck;
 // 弄完用栈模拟计算器后，去结硬寨之前所学！
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author lzm
@@ -62,13 +63,13 @@ public class SimulateCalc {
                     i++;
                 } else {
                     // 跟符号栈的栈顶符号比较优先级。如果优先级高，直接入符号栈; 如果优先级低或相等，把符号栈的元素弹出来和把数据栈顶和栈顶的下一个数弹出来。
-                    if (priority(input[i]) <= priority((char) symbolStack.peek())) {   // 优先级低
-                        num1 = Integer.parseInt((String) dataStack.pop());
-                        num2 = Integer.parseInt((String) dataStack.pop());
-                        symbol = (char) symbolStack.pop();
-                        sum = this.count(num1, num2, symbol);
-                        dataStack.push(sum);
-                    }
+                    // if (priority(input[i]) <= priority((char) symbolStack.peek())) {   // 优先级低
+                    //     num1 = Integer.parseInt((String) dataStack.pop());
+                    //     num2 = Integer.parseInt((String) dataStack.pop());
+                    //     symbol = (char) symbolStack.pop();
+                    //     sum = this.count(num1, num2, symbol);
+                    //     dataStack.push(sum);
+                    // }
                     symbolStack.push(input[i]);
                     i++;
                 }
@@ -86,6 +87,7 @@ public class SimulateCalc {
         return (String) dataStack.pop();
     }
 
+
     /**
      * @return 如果是返回0，表示是数字;如果返回1，表示是操作符
      */
@@ -95,12 +97,17 @@ public class SimulateCalc {
         return 0;
     }
 
+
     /**判断放入符号栈的符号优先级
     * 如果返回1，表示优先级高；返回0，表示优先级低
     */
-    public int priority(char item) {
-        if (item == '*' || item == '/')
+    public static int priority(String item) {
+        if ("*".equals(item) || "/".equals(item))
             return 1;
+        else if ("(".equals(item)) {
+            return -1;
+
+        }
         return 0;
     }
 
@@ -131,26 +138,12 @@ public class SimulateCalc {
     }
 
 
-
-    /**
-     * 中缀表达式转后缀表达式的代码实现（包括带括号）
-     * 思路:①定义两个栈，一个用来装结果集（数值栈），另外一个符号栈用来装操作符。
-     * ②扫描到数字，直接入数值栈。
-     * ③扫描到符号，如果栈顶操作符栈为空或左括号，直接push进符号栈;
-     * 如果该符号的优先级高（*或/）,直接压入栈；
-     * 如果是右括号，弹出符号栈里的操作符进数值栈，并消除一个左括号。
-     * 如果符号优先级相等，pop出符号，然后再压。
-     * 得到的字符串，逆序一下。
-     */
-    public void reverseStr(char[] input) {
-
-    }
-
     /**
      * 把字符串放在集合中，要考虑多位数
      * 如果是非数字，直接加入list中；如果是数字，while循环判断下一位是否是数字
+     * 结束的时候是索引小于字符串长度
      */
-    public static ArrayList<String> StrToList(String str){
+    public static List<String> StrToList(String str){
         ArrayList<String> arrayList = new ArrayList<>();
         String joint = ""; // joint abj.联合的 这个主要是为了多位数的字符串拼接
         char item;
@@ -158,13 +151,13 @@ public class SimulateCalc {
         // 因为对一个算式字符串长度是不固定的，不知道循环几次，用do..while。
         do {
             // 非数字:
-            if ((item = str.charAt(index)) < '0' || (item = str.charAt(index)) > '9'){
+            if ((item = str.charAt(index)) < '0' || item > '9'){
                 arrayList.add("" + item);
                 index++;
             } else {
                 // 数字
                 joint = "";
-                while (index < str.length() && (item = str.charAt(index)) >= '0' && (item = str.charAt(index)) <= '9') {
+                while (index < str.length() && (item = str.charAt(index)) >= '0' && item <= '9') {
                     joint += item;
                     index++;
                 }
@@ -175,14 +168,54 @@ public class SimulateCalc {
     }
 
 
+    /**
+     * 中缀表达式转后缀表达式具体实现:
+     * 中缀表达式转后缀表达式的代码实现（包括带括号）
+     * 思路:①定义两个栈，一个用来装结果集（用list代替），另外一个符号栈用来装操作符。
+     * ②扫描到数字，直接入数值栈。
+     * ③扫描到符号，如果栈顶操作符栈为空或左括号，直接push进符号栈;
+     * 如果该符号的优先级高（*或/）,直接压入栈；
+     * 如果是右括号，弹出符号栈里的操作符进数值栈，并消除一个左括号。
+     * 如果符号优先级相等，pop出符号，然后再压。
+     */
+    public static List<String> ParseSuffixExpression(List<String> list){
+        java.util.Stack<String> stack = new java.util.Stack<>();
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        for (String item:list) {
+            // 先判断特殊的情况:数字、左括号、右括号
+            if (item.matches("\\d+")) {
+                arrayList.add(item);
+            } else if ("(".equals(item)) {
+                stack.push(item);
+            } else if (")".equals(item)) {
+                // 一直循环遍历栈，直到peek到左括号.
+                while (!(stack.peek().equals("("))){
+                    arrayList.add(stack.pop());
+                }
+                // 消除左括号!!!
+                stack.pop();
+            } else {
+                // 栈顶符号与新增比较优先级，谁的优先级高，谁走
+                if (stack.size() != 0 && priority(stack.peek()) >= priority(item)){
+                    arrayList.add(stack.pop());
+                }
+                stack.push(item);
+            }
+        }
+        // 把剩余栈中的符号依次弹入arrayList
+        while (stack.size() != 0) {
+            arrayList.add(stack.pop());
+        }
+        return arrayList;
+    }
+
+
     /*想要遍历字符串的话，可以不用转成char数组，因为有length和charAt方法。*/
     public static void main(String[] args) {
-        String s = "1+((3+2)*4)-6";
-        System.out.println(SimulateCalc.StrToList(s));
-        // if (s.matches("\\w+"))
-        //     System.out.println("\\s表示匹配一个字母、数字或下划线，而\\s+，匹配前面的字符一次或多次");
-        // char a = 'a';
-        // String b = String.valueOf(a);
-
+        String s = "13+((31+2)*4)-6";
+        List<String> list1 = SimulateCalc.StrToList(s);
+        List<String> list2 = ParseSuffixExpression(list1);
+        System.out.println(list2);
     }
 }
