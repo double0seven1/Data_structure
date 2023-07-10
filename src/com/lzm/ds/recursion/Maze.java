@@ -53,7 +53,7 @@ public class Maze {
         maze[7][3] = 1;
         maze[7][4] = 1;
         maze[7][5] = 1;
-        // 设置终点坐标
+        // 设置终点坐标d
         // maze[6][5] = 5;
 
 
@@ -162,7 +162,6 @@ public class Maze {
             return 5;
         }
     }
-
     /*
      *
      *
@@ -199,4 +198,7 @@ public class Maze {
             return false;
         }
     }
+
+
+
 }
