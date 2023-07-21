@@ -139,7 +139,7 @@ public class SimulateCalc {
 
 
     /**
-     * 把字符串放在集合中，要考虑多位数
+     * 为什么要把这个字符串放进集合里面，————为了解决多位数的问题
      * 如果是非数字，直接加入list中；如果是数字，while循环判断下一位是否是数字
      * 结束的时候是索引小于字符串长度
      */
@@ -167,7 +167,6 @@ public class SimulateCalc {
         return arrayList;
     }
 
-
     /**
      * 中缀表达式转后缀表达式具体实现:
      * 中缀表达式转后缀表达式的代码实现（包括带括号）
@@ -184,19 +183,19 @@ public class SimulateCalc {
 
         for (String item:list) {
             // 先判断特殊的情况:数字、左括号、右括号
-            if (item.matches("\\d+")) {
+            if (item.matches("\\d+")) { // 转换成String之后，就可以用正则表达式去判断数字了，这多好！
                 arrayList.add(item);
             } else if ("(".equals(item)) {
                 stack.push(item);
             } else if (")".equals(item)) {
-                // 一直循环遍历栈，直到peek到左括号.
+                // 一直循环遍历栈，直到peek(偷窥)到左括号.
                 while (!(stack.peek().equals("("))){
                     arrayList.add(stack.pop());
                 }
-                // 消除左括号!!!
+                // 记得消除左括号!!!
                 stack.pop();
             } else {
-                // 栈顶符号与新增比较优先级，谁的优先级高，谁走
+                // 先判断栈空间是否为空，如果空的话，直接push。然后栈顶符号与新增比较优先级，谁的优先级高，谁走
                 if (stack.size() != 0 && priority(stack.peek()) >= priority(item)){
                     arrayList.add(stack.pop());
                 }
@@ -211,7 +210,7 @@ public class SimulateCalc {
     }
 
 
-    /*想要遍历字符串的话，可以不用转成char数组，因为有length和charAt方法。*/
+    /*想要遍历字符串的话，可以不用转成char数组，因为有字符串有length属性和charAt方法。*/
     public static void main(String[] args) {
         String s = "13+((31+2)*4)-6";
         List<String> list1 = SimulateCalc.StrToList(s);
