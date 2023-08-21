@@ -59,6 +59,7 @@ public class Queen8 {
         }
 
         for (int i = 0; i < 8; i++) {
+            // 每一行有8个位置，让这八个位置都走一遍
             arr[n] = i;
             // 因为前面可能已经放了queen了，我需要判断这个点位是否合理
             if (judge(n)) {

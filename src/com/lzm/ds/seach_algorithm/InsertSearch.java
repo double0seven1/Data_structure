@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @Author lzm
  * @Date 2023/8/10 22:04
+ * 插值查找
  */
 public class InsertSearch {
 

@@ -10,22 +10,23 @@ import java.util.Date;
  */
 public class Quick_Sort {
     public static void main(String[] args) {
-        // int[] arr = {1,2,3,1,2};
-        int[] arr = new int[8000_0000];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random() * 800000);
-        }
-        Date date1 = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
-        String start = simpleDateFormat.format(date1);
-        System.out.println(start);
+        // int[] arr = {921, 387, 563, 42, 837, 126, 708, 953, 246, 650, 811, 371, 84, 432, 904, 699, 202, 753, 567, 185, 325, 968, 156, 576, 311, 647, 727, 128, 841, 598, 478, 937, 30, 775, 811, 28, 869, 145, 464, 332, 598, 695, 104, 879, 9, 616, 807, 187, 401, 723, 517};
+        int[] arr = {10,9,3,6,8,};
+        // int[] arr = new int[8000_0000];
+        // for (int i = 0; i < arr.length; i++) {
+        //     arr[i] = (int) (Math.random() * 800000);
+        // }
+        // Date date1 = new Date();
+        // SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm:ss");
+        // String start = simpleDateFormat.format(date1);
+        // System.out.println(start);
 
         new Quick_Sort().quickSort(arr,0,arr.length - 1);
 
-        Date date2 = new Date();
-        String finish = simpleDateFormat.format(date2);
-        System.out.println(finish);
-        // System.out.println( Arrays.toString(arr));
+        // Date date2 = new Date();
+        // String finish = simpleDateFormat.format(date2);
+        // System.out.println(finish);
+        System.out.println( Arrays.toString(arr));
     }
 
     /**
@@ -45,39 +46,38 @@ public class Quick_Sort {
 
         while(l < r){
             // 在pivot的左边寻找比pivot大于等于的数
-            while (arr[l] < pivot){
+            while (arr[l] < pivot)
                 l++;
-            }
+
 
             // 在pivot的右边寻找比pivot小于等于的数
-            while (arr[r] > pivot){
+            while (arr[r] > pivot)
                 r--;
-            }
+
 
             // 找到之后，左右索引相等就代表，就代表已经排序完成（pivot左边都是比pivot小的数，pivot右边都是比pivot大的数）
-            if (l == r){
+            if (l == r)
                 break;
-            }
+
 
             // 交换数据
             temp = arr[l];
             arr[l] = arr[r];
             arr[r] = temp;
 
-            // 手动干预特殊情况（序列中有pivot相同的数）
-            if (arr[l] == pivot){
+            // 手动干预特殊情况（假如序列中有pivot相同的数）
+            if (arr[l] == pivot)
                 // 没有什么难题解决不了，终于知道为什么判断arr【l】等于pivot，然后r要--。
                 // 你要知道，左索引和右索引的尽头都是pivot，所以得另外一个索引操作。
                 r--;
-            }
-            if (arr[r] == pivot){
+
+            if (arr[r] == pivot)
                l++;
-            }
+
         }
         // 来到这里，必定l == r(只有这样，才能跳出上面的循环)，为了递归，有以下的操作
         // 来到这里有可能r < l，不过问题也不大。
-        l--;
-        r++;
+        l--;    r++;
 
         // 左递归
         if (left < l){

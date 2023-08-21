@@ -10,7 +10,7 @@ package com.lzm.ds.sparsearr_queue_linkedlist;
  * @see DoubleLinkedList
  */
 public class DoubleLinkedList {
-    D_Node first;
+    D_Node firstGirl;
     // 加元素这个步骤完全可以进行多态，如果是直接传入数值，就从末尾加；如果是提供了索引和数值，就从头节点开始加咯。
     D_Node rear;
 
@@ -19,8 +19,8 @@ public class DoubleLinkedList {
         D_Node val2 = this.rear;
         D_Node val3 = new D_Node(val2,val1,null);
         this.rear = val3;
-        if (first == null) {
-            first = val3;
+        if (firstGirl == null) {
+            firstGirl = val3;
         }
         val2.down = rear;
     }

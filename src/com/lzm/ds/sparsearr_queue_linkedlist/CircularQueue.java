@@ -9,7 +9,7 @@ public class CircularQueue {
     private int rear = 0;
 
     int maxSize = 5;
-    private int arr[] = new int[maxSize];
+    private final int[] arr = new int[maxSize];
 
     // 判断是否为空
     public boolean isEmpty() {
@@ -18,7 +18,7 @@ public class CircularQueue {
 
     // 判断是否满了
     public boolean isFull() {
-        // 如果不空出一个空间（rear指向最后一个元素的后一位）,该怎么区分判断是否为空或满？
+        // 这很巧妙呀，空出一个空间（rear指向最后一个元素的后一位）,就可以区分判断是否为空或满？
         return (rear + 1) % maxSize == front;
     }
 

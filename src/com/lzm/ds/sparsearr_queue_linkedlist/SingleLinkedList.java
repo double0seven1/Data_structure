@@ -127,22 +127,25 @@ public class SingleLinkedList {
     // 普通版反转单链表->头插法（每遍历一个节点，就放在前面）
     public void reverseLinkedList() {
         //如果sum = 1或等于0，无需反转
-
+        if(head.next == null){
+            return;
+        }
         // 创建一个首首节点来辅助，每遍历一个节点，就放在首首节点的后面
         Node header = new Node();
         header.next = head;
 
         Node curNode = head.next;
-        Node frontNode = head;//惊天大bug，frontNode的位置不会变！
+        // 搞这个frontNode，是因为最后一个Node往前面送去之后，前一个Node的指针域需要置为null。
+        Node frontNode = head;
 
         while(curNode.next != null) {
             // 把当前节点的next节点存一下
             Node curNode_next = curNode.next;
+            frontNode = curNode;
             // 这里解决了一个小bug，要保存curNode的next结点！
             curNode.next = header.next;
             header.next = curNode;
             // 调整
-            frontNode.next = curNode_next;
             curNode = curNode_next;
         }
         // 来到这里是最后的一个节点
