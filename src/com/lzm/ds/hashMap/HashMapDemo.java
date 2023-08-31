@@ -3,6 +3,7 @@ package com.lzm.ds.hashMap;
 /**
  * @Author lzm
  * @Date 2023/8/19 22:10
+ * 低配版的哈希表~
  */
 public class HashMapDemo {
     public static void main(String[] args) {
@@ -94,8 +95,6 @@ class EmpLinkedList {
         } else {
             System.out.println("该链表找不到该员工");
         }
-
-
     }
 }
 
@@ -113,6 +112,7 @@ class HashMap{
         this.maxSize = maxSize;
         // 临时变量empLinkedListArr只是在栈内存空间开辟了maxSize大小的空间，并且里面放的都是null
         this.empLinkedListArr = new EmpLinkedList[maxSize];
+
         for (int i = 0; i < empLinkedListArr.length; i++) {
             // 这一步的作用:处在栈内存里面的empLinkedListArr能指向堆内存里new的链表。
             empLinkedListArr[i] = new EmpLinkedList();

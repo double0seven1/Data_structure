@@ -1,4 +1,4 @@
-package com.lzm.ds.statck;
+package com.lzm.ds.stack;
 
 /**
  * @Author lzm

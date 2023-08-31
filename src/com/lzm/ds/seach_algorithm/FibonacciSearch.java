@@ -32,7 +32,7 @@ public class FibonacciSearch {
         // 因为有可能斐波那契数比数组的长度要大，所以，我得创建一个新的数组去keep
         int[] newArr = Arrays.copyOf(arr,fib[itemOfFib] - 1);
         // 更新数组最后面的值
-        for (int i = right + 1; i < newArr.length; i++) {
+        for (int i = right; i < newArr.length; i++) {
             newArr[i] = arr[right];
         }
 

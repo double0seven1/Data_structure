@@ -1,4 +1,4 @@
-package com.lzm.ds.statck;
+package com.lzm.ds.stack;
 // 弄完用栈模拟计算器后，去结硬寨之前所学！
 
 import java.util.ArrayList;
