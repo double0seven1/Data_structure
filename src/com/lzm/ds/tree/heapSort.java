@@ -21,7 +21,7 @@ public class heapSort {
      * 把当前父节点调成大堆顶的模式（升序）
      * @param arr 待排序的数组
      * @param parentNode 当前需要处理的父节点（父节点下面可能会有子节点（非叶子节点））
-     * @param maxLength 可以有效处理的数据(因为堆排是把堆顶放去最后，放完之后就不要管了),一开始是数组最后的下标
+     * @param maxLength 可以有效处理的数据最大取值(因为堆排是把堆顶放去最后，放完之后就不要管了),一开始是数组最后的下标
      */
     public void adjustBigHeap(int[] arr,int parentNode,int maxLength){
         int temp = arr[parentNode];

@@ -28,25 +28,8 @@ public class MyTree {
         node3.setRight(node4);
 
         BinaryTree binaryTree = new BinaryTree(node);
-        // System.out.println("前序遍历:");
-        // binaryTree.preSort();
-        // System.out.println("中序遍历:");
-        // binaryTree.infixSort();
-        // System.out.println("后序遍历:");
-        // binaryTree.suffixSort();
 
-        // System.out.println("寻找的人是:  ");
-        // System.out.println(binaryTree.preSearch(13));
-        // System.out.println(binaryTree.infixSearch(18));
-        // System.out.println(binaryTree.suffixSearch(13));
-
-
-        if (binaryTree.delNode(4)){
-            System.out.println("删除成功，剩下的序列是:");
-            binaryTree.infixSort();
-        } else {
-            System.out.println("删除失败");
-        }
+        System.out.println( binaryTree.preSearch(8));
     }
 }
 
@@ -160,11 +143,12 @@ class Node {
         if (this.left != null){
             resNode = this.left.preSearch(id);
         }
+        // 如果左递归的过程中找到了，return上去，下面的代码也不用执行了！
         if (resNode != null){
-            return  resNode;
+            return resNode;
         }
 
-        // 右递归，
+        // 右递归
         if (this.right != null){
             resNode = this.right.preSearch(id);
         }

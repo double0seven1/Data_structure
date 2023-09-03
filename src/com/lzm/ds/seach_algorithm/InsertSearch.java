@@ -12,10 +12,10 @@ public class InsertSearch {
 
     public static void main(String[] args) {
         int[] arr = {6,97,104,251,359,401,559};
-        System.out.println(new InsertSearch().binarySearch(arr,359));
+        System.out.println(new InsertSearch().insertSearch(arr,359));
     }
 
-    private int binarySearch(int[] arr, int value){
+    private int insertSearch(int[] arr, int value){
         int left = 0;
         int right = arr.length - 1;
 
