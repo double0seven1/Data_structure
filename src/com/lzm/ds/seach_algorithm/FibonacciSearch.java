@@ -12,8 +12,8 @@ public class FibonacciSearch {
 
     public static void main(String[] args) {
         // 玩一下Arrays.copyOf中的方法
-        int[] arr = {2,3,4,5,6,10,20,43,43,49,50,69};
-        System.out.println(new FibonacciSearch().fibonacciSearch(arr,49));
+        int[] arr = {2,3,4,5,6};
+        System.out.println(new FibonacciSearch().fibonacciSearch(arr,4));
     }
 
     // 崔璀CEO老师：领导可不是学校老师，不是万能的！
