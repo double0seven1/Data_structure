@@ -291,16 +291,15 @@ public class huffmanCode {
 
         // （真实体验）果然我把问题呈现在大脑里，从深夜到黎明地去思考的话，神明真的会动下懒腰帮助我一下：
         // 如果前面的字节和最后一个字节相同那不就废了（更多可能的排列组合，要么多要么少，怪不得之前测试的时候，有时行有时不行。即使是行也打开不了文件）？
-
-        // for (byte i:transmit) {
-        //     if (i == transmit[transmit.length - 1]){
-        //         // 最后一位
-        //         builder.append(byteToBitString(i,true));
-        //     } else {
-        //         // 不是最后一位
-        //         builder.append(byteToBitString(i,false));
-        //     }
-        // }
+        for (byte i:transmit) {
+            if (i == transmit[transmit.length - 1]){
+                // 最后一位
+                builder.append(byteToBitString(i,true));
+            } else {
+                // 不是最后一位
+                builder.append(byteToBitString(i,false));
+            }
+        }
 
         for (int i = 0; i < transmit.length; i++) {
             if (i != transmit.length - 1){ // 不是最后一位

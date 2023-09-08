@@ -29,7 +29,7 @@ public class MyTree {
 
         BinaryTree binaryTree = new BinaryTree(node);
 
-        System.out.println( binaryTree.preSearch(8));
+        System.out.println(binaryTree.preSearch(8));
     }
 }
 
