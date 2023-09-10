@@ -6,6 +6,7 @@ import java.util.Arrays;
  * @Author lzm
  * @Date 2023/8/28 17:50
  * 两三天时间吧序，终于弄明白堆排的思路：
+ * 总会把min元素放去最后的位置
  * ①先把整体的数组搞成大堆顶的方式，只需将每个非叶子节点都弄成大顶堆(从下到上，从右到左)
  * ②把堆顶元素放去末尾.
  * ③放好之后，从堆顶开始，重新调成结构,保持大堆顶模式.
@@ -26,6 +27,7 @@ public class heapSort {
     public void adjustBigHeap(int[] arr,int parentNode,int maxLength){
         int temp = arr[parentNode];
 
+        // 跟自己的节点比较大小.
         for (int i = parentNode * 2 + 1; i < maxLength;  i *= 2 + 1) {
 
             // 判断左右节点哪个数值大

@@ -6,18 +6,26 @@ import com.sun.istack.internal.NotNull;
 /**
  * @Author lzm
  * @Date 2023/9/7 15:08
+ * 所谓的旋转，就是哪边高，对边旋转使高的那边变矮。例如，左边比右边高，就通过右旋把右边弄下去，左边上来(制衡)。
+ * AVL树
+ * •加元素的时候，什么时候需要双旋？
+ * ① 当root的leftHeight较大需要右旋（左上右下）的时候（不知道左节点哪一边大），如果root左节点的rightHeight比leftHeight大，就需要把root左节点进行左旋。
+ * 大，就需要将root的左节点进行左旋。
+ * ② 当root的rightHeight较大需要左旋（左下右上）的时候，如果root右节点的leightHeight比rightHeight大，就需要将root右节点进行右旋。
  */
 public class AVLDemo {
     public static void main(String[] args) {
-        int[] arr = {4, 3, 6, 5, 7, 8};
+        int[] arr = {10,11,7,6,8,9};
         AVLTree avlTree = new AVLTree();
         for (int i : arr) {
+            System.out.println(avlTree.root);
             avlTree.addNode(new Node(i));
         }
+        System.out.println("-------------------------------");
         avlTree.infixTraverse();
         System.out.println(avlTree.root.leftHeight());
         System.out.println(avlTree.root.rightHeight());
-
+        System.out.println(avlTree.root);
     }
 }
 
@@ -91,7 +99,7 @@ class AVLTree {
             Node parent = this.findParent(target);
 
             // 怎么知道这个节点相对于父节点是左还是右呢？
-            // 通过parent的左右两边对比咯~（拿到父节点真的爽）
+            // 通过parent的左右两边分别对比一下咯~（拿到父节点真的爽）
             // 叶子节点
             if (target.left == null && target.right == null) {
                 if (parent.left != null && parent.left.equals(target)) {
@@ -120,7 +128,6 @@ class AVLTree {
             }
         }
     }
-
 }
 
 class Node {
@@ -167,8 +174,30 @@ class Node {
             }
         }
         // 如果右子树的高度比左子树高，进行左旋.
-        if (this.leftHeight() < this.rightHeight()) {
+        // 下面的代码有问题：例如，左子树的高度是2，右子是1，也会执行方法
+        // if (this.leftHeight() < this.rightHeight()) {
+        //     leftRotate();
+        // } else if (this.rightHeight() < this.leftHeight()) {
+        //     rightRotate();
+        // }
+
+        // 如果右子树的高度比左子树高(相减大于1)，进行左旋.
+        if (this.rightHeight() - leftHeight() > 1){
+            // 要左旋时，手动干预一种特殊情况：root右节点的左子树比右子树要高
+            if (this.right.leftHeight() > this.right.rightHeight()){
+                // 让右子节点进行右旋
+                this.right.rightRotate();
+            }
             leftRotate();
+        }
+        // 如果左子树的高度比右子树高(相减大于1)，进行右旋.
+        if (this.leftHeight() - rightHeight() > 1) {
+            // 要右旋时，手动干预一种特殊的情况：root左节点的右子树比左子树高度要高
+            if (this.left.rightHeight() > this.left.leftHeight()){
+                // 让left节点进行左旋
+                this.left.leftRotate();
+            }
+            rightRotate();
         }
     }
 
@@ -211,7 +240,7 @@ class Node {
     }
 
     // 我要干嘛？求AVL树的高度
-    // 肯定得用递归，但没想到老师的递归那么强
+    // 肯定得用递归，但没想到老师的递归那么强,那么简洁
     public int height() {
         return Math.max((left == null ? 0 : left.height()),
                 (right == null ? 0 : right.height())) + 1;
@@ -231,7 +260,7 @@ class Node {
         return right.height();
     }
 
-    // 左旋
+    // 左旋（右子树的高度比左子树的高度高）
     public void leftRotate() {
         // 为什么我直接就敢用this呢？
         // 什么时候才会左旋、右旋呢？ ————添加节点的时候呀。
@@ -250,4 +279,13 @@ class Node {
         this.left = newNode;
     }
 
+    // 右旋（左子树的长度比右子树高）
+    public void rightRotate() {
+        Node newNode = new Node(this.value);
+        newNode.right = this.right;
+        newNode.left = this.left.right;
+        this.value = this.left.value;
+        this.left = this.left.left;
+        this.right = newNode;
+    }
 }

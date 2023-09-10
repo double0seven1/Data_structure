@@ -13,13 +13,19 @@ public class huffmanCode {
     static int countOfMeta;
     public static void main(String[] args) {
 
-        String src = "D:\\资料2-21天学通C++第8版 高清完整PDF.pdf";
-        String des = "D:\\资料2-21天学通C++第8版 高清完整PDF.zip";
-        FileZip(src,des);
 
-        String src1 = "D:\\资料2-21天学通C++第8版 高清完整PDF.zip";
-        String des1 = "D:\\资料2-21天学通C++第8版 高清完整PDF（2）.pdf";
-        FileDeZip(src1,des1);
+        String s = "if your father can't pay the rent,go and ask mikey mantle,see what he tell you,mikey mantle don't care you,so why you care about him.Nobody cares.";
+
+        byte[] bytes = fengzhuang(s.getBytes());
+        byte[] decode = decode(bytes, codeMap, countOfMeta);
+
+        // String src = "D:\\资料2-21天学通C++第8版 高清完整PDF.pdf";
+        // String des = "D:\\资料2-21天学通C++第8版 高清完整PDF.zip";
+        // FileZip(src,des);
+        //
+        // String src1 = "D:\\资料2-21天学通C++第8版 高清完整PDF.zip";
+        // String des1 = "D:\\资料2-21天学通C++第8版 高清完整PDF（2）.pdf";
+        // FileDeZip(src1,des1);
 
 
         // String src = "D:\\new.bmp";
@@ -78,6 +84,9 @@ public class huffmanCode {
      * @return 返回装好了每个节点的集合
      */
     public static List<Node> StringToNode(byte[] chuanShu) {
+        if (chuanShu.length == 0){
+            return null;
+        }
 
         // 难点：如何统计每个char出现的次数呢？用循环吗？ ———— no
         ArrayList<Node> list = new ArrayList<>();
@@ -119,6 +128,9 @@ public class huffmanCode {
      * @return 返回赫夫曼树的root节点
      */
     public static Node createHuffmanTree(List<Node> list) {
+        if (list.size() == 0){
+            return null;
+        }
         while (list.size() > 1) {
             Collections.sort(list);
 
@@ -197,7 +209,7 @@ public class huffmanCode {
         String newChuanShu = builder.toString();
 
 
-        // 先计算需要byte数组的大小是多少（每八个放一个字节）
+        // 先计算需要byte数组的大小是多少（每八个二进制放一个字节）
         // 能整除8的话，加了7之后，照样也是那个结果
         int count0 = (newChuanShu.length() + 7) / 8;
         byte[] newChuanShuArr = new byte[count0];
@@ -231,12 +243,14 @@ public class huffmanCode {
 
         // 把Node构建成赫夫曼树
         Node root = createHuffmanTree(nodes);
-
+        System.out.println(root);
         // 通过上面的二叉树，我获得每个字符所对应的二进制编码（在codeMap中）
         getMappedCode(root,"",builder);
 
         // 获取压缩后的byte数组
-        return binaryDataToByte(transmit);
+        byte[] bytes = binaryDataToByte(transmit);
+        System.out.println(Arrays.toString(bytes));
+        return bytes;
     }
 
 
@@ -291,15 +305,15 @@ public class huffmanCode {
 
         // （真实体验）果然我把问题呈现在大脑里，从深夜到黎明地去思考的话，神明真的会动下懒腰帮助我一下：
         // 如果前面的字节和最后一个字节相同那不就废了（更多可能的排列组合，要么多要么少，怪不得之前测试的时候，有时行有时不行。即使是行也打开不了文件）？
-        for (byte i:transmit) {
-            if (i == transmit[transmit.length - 1]){
-                // 最后一位
-                builder.append(byteToBitString(i,true));
-            } else {
-                // 不是最后一位
-                builder.append(byteToBitString(i,false));
-            }
-        }
+        // for (byte i:transmit) {
+        //     if (i == transmit[transmit.length - 1]){
+        //         // 最后一位
+        //         builder.append(byteToBitString(i,true));
+        //     } else {
+        //         // 不是最后一位
+        //         builder.append(byteToBitString(i,false));
+        //     }
+        // }
 
         for (int i = 0; i < transmit.length; i++) {
             if (i != transmit.length - 1){ // 不是最后一位
