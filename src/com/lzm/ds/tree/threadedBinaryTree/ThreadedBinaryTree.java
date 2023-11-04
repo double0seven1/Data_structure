@@ -51,6 +51,7 @@ public class ThreadedBinaryTree {
         // 左递归
         ThreadedNode(node.getLeft());
 
+        // 如果该节点的左节点没有东西，就放上前驱节点，并标记（方便遍历）
         // 这里注意！最前面数的前驱节点虽然是null，但leftType也被赋为1了。
         if (node.getLeft() == null) {
             node.setLeft(preAssist);
@@ -76,13 +77,13 @@ public class ThreadedBinaryTree {
 
         while (curNode != null) {
             // 先循环找到当前树的最左、最小的那个元素(最左元素的leftType 是 1)
-            while (curNode.getLeftType() == 0) {
+            while (curNode.getLeftType() == 0) { // 默认0是树枝节点，我都tm要跳过.
                 curNode = curNode.getLeft();
             }
             // 打印当前节点
             System.out.println(curNode);
 
-            // 如果是右继节点的话，直接进入
+            // 如果右指针是右继节点的话，直接让curNode进入（从叶子节点上去非叶子节点）
             if (curNode.getRightType() == 1) {
                 curNode = curNode.getRight();
                 System.out.println(curNode);
@@ -110,7 +111,7 @@ class Node {
     private Node right; // 右节点
 
     // 因为该节点可能放前驱或者左子树，所以我需要去区分一下
-    // 0默认为树，1为前驱或后继
+    // 0默认节点为树枝，1为前驱或后继
     private int leftType;
     private int rightType;
 

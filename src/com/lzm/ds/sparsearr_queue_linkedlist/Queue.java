@@ -7,13 +7,14 @@ public class Queue {
     // rear是队列尾，指向最尾的数据
     private int rear = -1;
 
-    private int maxSize = 5;
+    private final int maxSize = 5;
     private int arr[] = new int[maxSize];
 
     public boolean isEmpty() {
         return front == rear;
     }
 
+    // 我还在想为啥是maxSize - 1，数组下标从0开始。
     public boolean isFull() {
         return rear == maxSize - 1;
     }

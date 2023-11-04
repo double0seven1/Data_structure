@@ -22,10 +22,9 @@ public class AVLDemo {
             avlTree.addNode(new Node(i));
         }
         System.out.println("-------------------------------");
-        avlTree.infixTraverse();
+        System.out.println(avlTree.root);
         System.out.println(avlTree.root.leftHeight());
         System.out.println(avlTree.root.rightHeight());
-        System.out.println(avlTree.root);
     }
 }
 
@@ -34,18 +33,20 @@ class AVLTree {
 
     // 加元素
     public void addNode(Node node) {
+        if (node == null){
+            return;
+        }
         if (root == null) {
             root = node;
         } else {
             root.addNode(node);
         }
-
     }
 
     // 遍历元素
     public void infixTraverse() {
         if (root == null) {
-            System.out.println("该数为空，不可遍历");
+            System.out.println("该树为空，不可遍历");
         } else {
             root.infixTraverse();
         }
@@ -95,14 +96,14 @@ class AVLTree {
                 root = null;
             }
         } else {
-            // 先拿到父节点
+            // 先拿到父节点,这里的findParent其实就是root.findParent(target)
             Node parent = this.findParent(target);
 
             // 怎么知道这个节点相对于父节点是左还是右呢？
             // 通过parent的左右两边分别对比一下咯~（拿到父节点真的爽）
             // 叶子节点
             if (target.left == null && target.right == null) {
-                if (parent.left != null && parent.left.equals(target)) {
+                if (parent.left.equals(target)) {
                     parent.left = null;
                 } else {
                     parent.right = null;
@@ -110,7 +111,7 @@ class AVLTree {
 
                 // 有两个分支的节点
             } else if (target.left != null && target.right != null) {
-                if (parent.left != null && parent.left.equals(target)) {
+                if (parent.left.equals(target)) {
                     parent.left = target.right;
                 } else {
                     parent.right = target.right;
@@ -120,7 +121,7 @@ class AVLTree {
             } else {
                 // 有一个分支的节点
                 // 等号比较的是地址！我要比较的是里面的数值！(终于找到bug)
-                if (parent.left != null && parent.left.equals(target)) {
+                if (parent.left.equals(target)) {
                     parent.left = (target.left == null) ? target.right : target.left;
                 } else {
                     parent.right = (target.left == null) ? target.right : target.left;
@@ -156,7 +157,7 @@ class Node {
     }
 
     public void addNode(@NotNull Node node) {
-        if (node == null || this.equals(node)) { // 先考虑特殊情况
+        if (this.equals(node)) { // 先考虑特殊情况（如果定义了Key Value，就不能这样子了喔）
             return;
         }
 
@@ -190,7 +191,7 @@ class Node {
             }
             leftRotate();
         }
-        // 如果左子树的高度比右子树高(相减大于1)，进行右旋.
+        // 如果左子树的高度比右子树高(相减大于1)，需要进行右旋来使树的两边达到平衡.
         if (this.leftHeight() - rightHeight() > 1) {
             // 要右旋时，手动干预一种特殊的情况：root左节点的右子树比左子树高度要高
             if (this.left.rightHeight() > this.left.leftHeight()){
@@ -213,14 +214,15 @@ class Node {
 
 
     // 高招寻找父节点,找到返回父节点；找不到，返回null
+    // 思路：遍历每个节点，如果该节点的left、right等于要找的节点，这不就找到了吗！
     public Node findParent(Node node) {
         if ((this.left != null && this.left.value == node.value)
                 || (this.right != null && this.right.value == node.value)) {
             return this;
         } else {
-            if (this.value < node.value && this.right != null) {
+            if (this.value < node.value && this.right != null) { // 比要找的节点小，去右节点找
                 return this.right.findParent(node);
-            } else if (this.value > node.value && this.left != null) {
+            } else if (this.value > node.value && this.left != null) { // 比要找的节点大，去左节点找
                 return this.left.findParent(node);
             }
         }
@@ -242,6 +244,7 @@ class Node {
     // 我要干嘛？求AVL树的高度
     // 肯定得用递归，但没想到老师的递归那么强,那么简洁
     public int height() {
+        // 凡是进到这个函数的话，都要加一
         return Math.max((left == null ? 0 : left.height()),
                 (right == null ? 0 : right.height())) + 1;
     }

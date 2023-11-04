@@ -9,7 +9,7 @@ public class Bubble_Sort {
     int time;
 
     public static void main(String[] args) {
-        int[] arr = {8,9,7,6,5,4,3,2,1};
+        int[] arr = {1,2,3,4,5,6,7,8,9,10};
         Bubble_Sort bubbleSort = new Bubble_Sort();
         bubbleSort.realizeBubble(arr);
         for (int item:arr) {
@@ -29,8 +29,10 @@ public class Bubble_Sort {
         int temp;
         // 算法优化：如果一次都没有交换的话，直接结束冒泡排序算法
         int count;
+
         for (int i = 0; i < arr.length - 1; i++) {
             count = 0;
+            // 为什么这里要 - i？ 已经排好顺序的元素不用再排了呀
             for (int j = 0; j < arr.length - 1 - i; j++) {
                 if (arr[j] < arr[j + 1]){
                     count++;

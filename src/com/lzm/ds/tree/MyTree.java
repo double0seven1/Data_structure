@@ -83,10 +83,7 @@ class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Node{" + "id=" + id + ", name='" + name + '\'' + '}';
     }
 
     // 前序遍历
@@ -132,7 +129,7 @@ class Node {
     }
 
 
-    // 前序查找
+    // 前序查找(太low了，如果在二叉排序树里时间复杂度可以大大减少)
     public Node preSearch(int id){
         if (this.id == id){
             return this;
@@ -236,7 +233,7 @@ class Node {
 }
 
 class BinaryTree {
-    // 至关重要的头节点
+    // 至关重要的头节点，通过头节点，就可以对整颗树实现CRUD
     Node headNode;
 
     public BinaryTree(@NotNull Node headNode) {

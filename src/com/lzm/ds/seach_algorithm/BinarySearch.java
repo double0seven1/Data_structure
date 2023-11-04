@@ -8,15 +8,13 @@ import java.util.List;
  * @Date 2023/8/7 23:08
  */
 public class BinarySearch {
-    // 为第二个完整版二分查找提供一个容器
-    static List<Integer> list = new ArrayList<>();
+
 
     public static void main(String[] args) {
         int[] arr = {1,2,3,4,5,6,7,7,7,7,7};
-        new BinarySearch().binarySearch1(arr,0,arr.length - 1,7);
-        for (int i:list) {
-            System.out.print(i + " ");
-        }
+        // new BinarySearch().binarySearch(arr,3);
+
+        new BinarySearch().binarySearch1(arr,7);
     }
 
 
@@ -25,6 +23,7 @@ public class BinarySearch {
         int right = arr.length - 1;
         int midIndex;
 
+        // resList:result list(结果集)
         List<Integer> resList = new ArrayList<>();
 
         while (left <= right){
@@ -45,7 +44,20 @@ public class BinarySearch {
         }
     }
 
+
+
+
+    // 为第二个完整版二分查找提供一个容器
+    static List<Integer> list = new ArrayList<>();
+
     /**递归法的完整二分查找*/
+    public void binarySearch1(int arr[],int value){
+        binarySearch1(arr,0,arr.length - 1,value);
+        for (int i:list) {
+            System.out.print(i + " ");
+        }
+    }
+
     private void binarySearch1(int arr[],int left, int right, int value){
         int midIndex = (left + right) / 2;
         if (left <= right){

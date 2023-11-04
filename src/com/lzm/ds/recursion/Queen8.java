@@ -16,12 +16,12 @@ public class Queen8 {
     int max = 8;
     // 定义一个8 * 8的棋盘，因为每一行都有皇后，所以可以简化代码，只用一维数组来替代
     int[] arr = new int[max];
-    // 计数器
+    // 计数器(计算共有几组八皇后的表示)
     int count = 0;
 
     public static void main(String[] args) {
         Queen8 queen8 = new Queen8();
-        queen8.queenPut(0);
+        queen8.queenPut();
         System.out.println(queen8.count);
     }
 
@@ -41,6 +41,10 @@ public class Queen8 {
         return true;
     }
 
+    // 重载一下，并且只向外提供
+    public void queenPut() {
+        this.queenPut(0);
+    }
 
     /**
      * 从第一个格子开始，让queen走遍8个棋子
