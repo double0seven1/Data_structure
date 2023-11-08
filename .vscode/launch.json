@@ -1,0 +1,196 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "AVLDemo",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.avl.AVLDemo",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "bstDemo",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.bst.bstDemo",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "HashMapDemo",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.hashMap.HashMapDemo",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "huffmanCode",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.huffmanCode.huffmanCode",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "HuffmanTree",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.huffmanTree.HuffmanTree",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Maze",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.recursion.Maze",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Queen8",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.recursion.Queen8",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.recursion.Test",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "BinarySearch",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.seach_algorithm.BinarySearch",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "FibonacciSearch",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.seach_algorithm.FibonacciSearch",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "InsertSearch",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.seach_algorithm.InsertSearch",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Bubble_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Bubble_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Insert_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Insert_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Merge_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Merge_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Quick_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Quick_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Radix_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Radix_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Select_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Select_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Shell_Sort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sort_algorithm.Shell_Sort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Josephu",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sparsearr_queue_linkedlist.Josephu",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "SparseArray",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sparsearr_queue_linkedlist.SparseArray",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Test(1)",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.sparsearr_queue_linkedlist.Test",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "SimulateCalc",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.stack.SimulateCalc",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "Test(2)",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.stack.Test",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "MyTree",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.tree.MyTree",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "heapSort",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.tree.heapSort",
+            "projectName": "Data_structure_9b0e9d30"
+        },
+        {
+            "type": "java",
+            "name": "ThreadedBinaryTree",
+            "request": "launch",
+            "mainClass": "com.lzm.ds.tree.threadedBinaryTree.ThreadedBinaryTree",
+            "projectName": "Data_structure_9b0e9d30"
+        }
+    ]
+}
